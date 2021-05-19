@@ -146,7 +146,7 @@ var LivewirePlugin = function (_Plugin) {
 
 
 		if (typeof window.Livewire === 'undefined') {
-			throw 'window.Livewire is undefined. Make sure to include @livewireScripts above this script';
+			throw 'window.Livewire is undefined. Make sure to include @livewireScripts before this script';
 		}
 
 		_this.livewireComponents = [];
