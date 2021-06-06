@@ -1,5 +1,5 @@
 {
-  "name": "swup-livewire-plugin",
+  "name": "@swup/livewire-plugin",
   "version": "1.0.0",
   "description": "This plugin adds support for Laravel Livewire",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aerni/swup-livewire-plugin.git"
+    "url": "https://github.com/swup/livewire-plugin.git"
   },
   "devDependencies": {
     "@swup/prettier-config": "^1.0.0",
