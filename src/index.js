@@ -8,7 +8,7 @@ export default class SwupLivewirePlugin extends Plugin {
 	livewireComponents = [];
 
 	get url() {
-		window.location.pathname + window.location.search;
+		return window.location.pathname + window.location.search;
 	}
 
 	constructor() {
