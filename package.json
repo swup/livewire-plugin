@@ -1,8 +1,8 @@
 {
   "name": "@swup/livewire-plugin",
-  "version": "1.0.0",
   "description": "This plugin adds support for Laravel Livewire",
   "amdName": "SwupLivewirePluginPlugin",
+  "version": "2.0.0",
   "type": "module",
   "source": "src/index.js",
   "main": "./dist/index.cjs",
