@@ -1,7 +1,7 @@
 import Plugin from '@swup/plugin';
 
-export default class LivewirePlugin extends Plugin {
-	name = 'LivewirePlugin';
+export default class SwupLivewirePlugin extends Plugin {
+	name = 'SwupLivewirePlugin';
 
 	constructor() {
 		super();
