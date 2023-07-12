@@ -20,13 +20,13 @@ export default class SwupLivewirePlugin extends Plugin {
 	}
 
 	mount() {
-		this.swup.hooks.before('replaceContent', this.cacheLivewireComponents);
-		this.swup.hooks.on('replaceContent', this.refreshLivewireComponents);
+		this.swup.hooks.before('content:replace', this.cacheLivewireComponents);
+		this.swup.hooks.on('content:replace', this.refreshLivewireComponents);
 	}
 
 	unmount() {
-		this.swup.hooks.off('replaceContent', this.cacheLivewireComponents);
-		this.swup.hooks.off('replaceContent', this.refreshLivewireComponents);
+		this.swup.hooks.off('content:replace', this.cacheLivewireComponents);
+		this.swup.hooks.off('content:replace', this.refreshLivewireComponents);
 	}
 
 	cacheLivewireComponents = () => {
