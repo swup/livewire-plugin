@@ -11,25 +11,18 @@ export default class SwupLivewirePlugin extends Plugin {
 		return window.location.pathname + window.location.search;
 	}
 
-	constructor() {
-		super();
-
-		if (typeof window.Livewire === 'undefined') {
-			throw 'window.Livewire is undefined. Make sure to include @livewireScripts before this script';
-		}
-	}
-
 	mount() {
-		this.swup.hooks.before('content:replace', this.cacheLivewireComponents);
-		this.swup.hooks.on('content:replace', this.refreshLivewireComponents);
+		if (typeof window.Livewire === 'undefined') {
+			throw new Error(
+				'window.Livewire is undefined. Make sure to include @livewireScripts before this script.'
+			);
+		}
+
+		this.before('content:replace', this.cacheLivewireComponents);
+		this.on('content:replace', this.refreshLivewireComponents);
 	}
 
-	unmount() {
-		this.swup.hooks.off('content:replace', this.cacheLivewireComponents);
-		this.swup.hooks.off('content:replace', this.refreshLivewireComponents);
-	}
-
-	cacheLivewireComponents = () => {
+	cacheLivewireComponents() {
 		// Save Livewire components to refresh later
 		const components = Array.from(document.querySelectorAll('[wire\\:id]'));
 		this.livewireComponents[this.url] = components;
@@ -40,7 +33,7 @@ export default class SwupLivewirePlugin extends Plugin {
 		}
 	}
 
-	refreshLivewireComponents = () => {
+	refreshLivewireComponents() {
 		// Refresh any previously saved Livewire Components
 		const components = this.livewireComponents[this.url] || [];
 		components.forEach((el) => {
