@@ -43,7 +43,21 @@ export default class SwupLivewirePlugin extends Plugin {
 			el.setAttribute('wire:initial-data', JSON.stringify(data));
 		});
 
-		// Aleays restart Livewire
-		window.Livewire.restart();
+		// Always restart Livewire
+		if (typeof window.Livewire.restart === 'function') {
+			window.Livewire.restart();
+		} else {
+			// handle versions of Livewire that don't have the .restart() method
+			window.Livewire.all().map((component) => {
+				// not always defined - depends on the component
+				if (typeof component.call === 'function') {
+					return component.call('restart');
+				}
+				// alternative version to component.call('restart') in case that doesn't exist
+				if (typeof component.$wire?.$refresh === 'function') {
+					component.$wire.$refresh();
+				}
+			});
+		}
 	}
 }
